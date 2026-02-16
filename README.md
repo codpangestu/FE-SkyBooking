@@ -1,12 +1,70 @@
-# React + Vite
+# 🛫 SkyBooking Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SkyBooking is a premium, high-performance flight booking application built with a focus on visual excellence and seamless user experience. This repository contains the frontend implementation, featuring a modern dark-themed aesthetic, dynamic flight discovery, and an intuitive booking flow.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Core**: React 18 (Vite)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (Reactive & Lightweight)
+- **Styling**: Tailwind CSS (Custom Design System)
+- **Icons**: Lucide React
+- **HTTP Client**: Axios
+- **Routing**: React Router DOM v6
+- **Animations**: Tailwind Animate & Transitions
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (v16.0 or higher)
+- npm or yarn
+
+### Installation & Run
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/codpangestu/FE-SkyBooking.git
+   cd FE-SkyBooking
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment**:
+   Create a `.env` file in the root directory and add your backend API URL:
+   ```env
+   VITE_API_URL=http://localhost:8000/api
+   ```
+
+4. **Launch development server**:
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser.
+
+## 🧠 Key Implementations
+
+### 🔗 API Integration
+The application interacts with a RESTful Laravel API. We use a centralized Axios instance (`src/services/api.js`) with:
+- **Automatic Interceptors**: Attaches JWT tokens to every request if available.
+- **Resource Standard**: Consumes nested JSON resources for efficient data transfer (flights, segments, facilities).
+
+### ⚡ React Implementation & State Management
+- **Zustand**: Used for high-performance state management (`src/store/`). 
+  - `useAuthStore`: Manages user sessions and authentication logic.
+  - `useBookingStore`: Persists flight selection and booking metadata across the multi-step flow.
+- **Hooks**: Custom hooks like `usePricing` handle complex business logic (calculating taxes and subtotals) outside of the UI components.
+
+### 🎨 Styling & Aesthetic
+- **Premium Dark Theme**: Implements a consistent dark-mode design system with glassmorphism effects (`glass-card`).
+- **Dynamic Cabin Maps**: The seat selection page dynamically generates aircraft layouts based on the `total_seats` metadata provided by the admin.
+- **Responsive Layouts**: Fully optimized for mobile, tablet, and desktop viewing.
+
+### 🛡️ Admin Dashboard
+While this is a React frontend, the system is integrated with a **Laravel Filament** admin dashboard. 
+- **Filament Integration**: Admins can manage flights, airports, airlines, and facilities. 
+- **Live Sync**: Changes made in the Filament dashboard (like updating seat counts or adding amenities) are reflected immediately in this frontend through automated data mapping.
+
+---
+Built by [Akbar Pangestu](https://github.com/codpangestu)
