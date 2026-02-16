@@ -99,7 +99,61 @@ src/
 
 ---
 
-## 🛠 Tech Stack
+## � Getting Started
+
+### 📦 Step-by-Step Installation (From Scratch)
+
+Jika Anda ingin membangun ulang project ini dari nol atau menginstalnya di perangkat baru, ikuti urutan perintah berikut:
+
+1. **Inisialisasi Project (Vite + React)**:
+   ```bash
+   npm create vite@latest skybooking -- --template react
+   cd skybooking
+   ```
+
+2. **Instalasi Dependencies Utama**:
+   ```bash
+   # Routing, Icons, & State Management
+   npm install react-router-dom lucide-react zustand
+   
+   # API Client
+   npm install axios
+   
+   # Utilities (Optional but recommended for Tailwind)
+   npm install tailwind-merge clsx
+   ```
+
+3. **Instalasi & Konfigurasi Tailwind CSS (v4)**:
+   ```bash
+   npm install tailwindcss @tailwindcss/vite
+   ```
+   *Tambahkan plugin Tailwind pada file `vite.config.js` Anda.*
+
+4. **Konfigurasi Environment**:
+   Buat file `.env` di root directory:
+   ```env
+   VITE_API_URL=http://localhost:8000/api
+   ```
+
+5. **Jalankan Project**:
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+### 🛠 Tech Stack Detail
+| Package | Version | Description |
+| :--- | :--- | :--- |
+| `react` | ^19.1.0 | Core library |
+| `react-router-dom` | ^7.13.0 | Navigation & Routing |
+| `tailwindcss` | ^4.1.18 | Styling framework |
+| `zustand` | ^5.0.11 | State management |
+| `axios` | ^1.13.5 | HTTP Client |
+| `lucide-react` | ^0.563.0 | Premium Icons |
+
+---
+
+## �🛠 Tech Stack
 
 * **Framework**: React 18 (Vite)
 * **State Management**: Zustand (Reactive State)
