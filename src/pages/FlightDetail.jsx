@@ -150,36 +150,59 @@ const FlightDetail = () => {
                                 </div>
                             </div>
 
-                            <div className="relative flex flex-col md:flex-row justify-between gap-12">
-                                {/* Timeline Line */}
-                                <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] bg-gradient-to-b from-primary-500/0 via-primary-500/30 to-primary-500/0 -translate-x-1/2"></div>
+                            <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
 
-                                <div className="flex-1 space-y-3">
-                                    <p className="text-6xl font-black text-white tracking-tighter">{flight.departureTime}</p>
-                                    <p className="font-black text-primary-500 uppercase tracking-[0.2em] text-sm">{flight.originCode}</p>
-                                    <div className="space-y-1">
-                                        <p className="text-slate-300 font-bold text-lg leading-tight">{flight.originCity}</p>
-                                        <p className="text-slate-500 text-xs font-medium uppercase tracking-widest">{flight.origin_airport_name || 'International Terminal'}</p>
-                                    </div>
-                                </div>
+  {/* Timeline divider (desktop only) */}
+  <div className="hidden md:block absolute left-1/2 top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-primary-500/30 to-transparent -translate-x-1/2"></div>
 
-                                <div className="md:w-16 flex flex-col items-center justify-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-slate-900/50 flex items-center justify-center border border-white/10 shadow-lg relative group">
-                                        <div className="absolute inset-0 bg-primary-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                        <Plane className="w-6 h-6 text-primary-500 rotate-90 relative z-10" />
-                                    </div>
-                                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest vertical-text whitespace-nowrap">{flight.duration}</span>
-                                </div>
+  {/* Departure */}
+  <div className="flex-1 text-center md:text-left space-y-3">
+    <p className="text-3xl sm:text-4xl md:text-5xl xl:text-5xl 2xl:text-6xl font-black tracking-tight">
+      {flight.departureTime}
+    </p>
+    <p className="font-black text-primary-500 uppercase tracking-[0.2em] text-xs md:text-sm">
+      {flight.originCode}
+    </p>
+    <div className="space-y-1">
+      <p className="text-slate-300 font-bold text-base md:text-lg leading-tight">
+        {flight.originCity}
+      </p>
+      <p className="text-slate-500 text-[10px] md:text-xs font-medium uppercase tracking-widest">
+        {flight.origin_airport_name || 'International Terminal'}
+      </p>
+    </div>
+  </div>
 
-                                <div className="flex-1 space-y-3 text-left md:text-right">
-                                    <p className="text-6xl font-black text-white tracking-tighter">{flight.arrivalTime}</p>
-                                    <p className="font-black text-primary-500 uppercase tracking-[0.2em] text-sm">{flight.destCode}</p>
-                                    <div className="space-y-1">
-                                        <p className="text-slate-300 font-bold text-lg leading-tight">{flight.destCity}</p>
-                                        <p className="text-slate-500 text-xs font-medium uppercase tracking-widest">{flight.destination_airport_name || 'Gate A-24 Main Hall'}</p>
-                                    </div>
-                                </div>
-                            </div>
+  {/* Center plane */}
+  <div className="flex flex-col items-center justify-center gap-4 md:w-20">
+    <div className="w-12 h-12 rounded-full bg-slate-900/50 flex items-center justify-center border border-white/10 shadow-lg">
+      <Plane className="w-6 h-6 text-primary-500 rotate-90" />
+    </div>
+    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+      {flight.duration}
+    </span>
+  </div>
+
+  {/* Arrival */}
+  <div className="flex-1 text-center md:text-right space-y-3">
+    <p className="text-3xl sm:text-4xl md:text-5xl xl:text-5xl 2xl:text-6xl font-black tracking-tight">
+      {flight.arrivalTime}
+    </p>
+    <p className="font-black text-primary-500 uppercase tracking-[0.2em] text-xs md:text-sm">
+      {flight.destCode}
+    </p>
+    <div className="space-y-1">
+      <p className="text-slate-300 font-bold text-base md:text-lg leading-tight">
+        {flight.destCity}
+      </p>
+      <p className="text-slate-500 text-[10px] md:text-xs font-medium uppercase tracking-widest">
+        {flight.destination_airport_name || 'Gate A-24 Main Hall'}
+      </p>
+    </div>
+  </div>
+
+</div>
+
                         </div>
 
                         {/* Amenities Card */}

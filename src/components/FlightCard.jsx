@@ -106,7 +106,7 @@ const FlightCard = ({ flight, onSelect }) => {
             </div>
 
             {/* ================= PRICE ================= */}
-            <div className="w-full xl:w-[260px] flex flex-col gap-5 border-t border-slate-800 pt-6 xl:pt-0 xl:border-t-0 xl:border-l xl:pl-8">
+            <div className="w-full xl:w-[220px] flex flex-col gap-5 border-t border-slate-800 pt-6 xl:pt-0 xl:border-t-0 xl:border-l xl:pl-8">
 
                 {/* Price Box */}
                 <div className="w-full bg-slate-900/50 rounded-2xl md:rounded-3xl px-5 md:px-6 py-4 md:py-5 text-center xl:text-right border border-slate-800 backdrop-blur-sm">

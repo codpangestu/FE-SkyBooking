@@ -244,26 +244,55 @@ const FlightClass = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center justify-between text-slate-300 bg-slate-900/30 p-8 rounded-[40px] border border-white/5 shadow-inner">
-                                    <div className="text-left">
-                                        <p className="text-3xl font-black text-white tracking-tighter leading-none mb-3">{selectedFlight.departureTime}</p>
-                                        <p className="text-[10px] font-black text-primary-400 uppercase tracking-[0.3em]">{selectedFlight.originCode}</p>
-                                    </div>
-                                    <div className="flex-grow flex flex-col items-center gap-2 px-6">
-                                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">{selectedFlight.duration}</span>
-                                        <div className="w-full relative py-2">
-                                            <div className="w-full h-[1px] bg-slate-800 relative">
-                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-950 p-2 rounded-full border border-white/10 shadow-lg">
-                                                    <Plane className="w-4 h-4 text-primary-500 rotate-90" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-3xl font-black text-white tracking-tighter leading-none mb-3">{selectedFlight.arrivalTime}</p>
-                                        <p className="text-[10px] font-black text-primary-400 uppercase tracking-[0.3em]">{selectedFlight.destCode}</p>
-                                    </div>
-                                </div>
+                                <div className="bg-slate-900/30 p-6 rounded-[40px] border border-white/5 shadow-inner">
+
+  <div className="flex flex-col gap-6">
+
+    {/* Departure */}
+    <div className="flex flex-col">
+      <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">
+        Departure
+      </span>
+      <span className="text-2xl font-black text-white leading-tight">
+        {selectedFlight.departureTime}
+      </span>
+      <span className="text-xs font-bold text-primary-400 uppercase tracking-[0.3em] mt-2">
+        {selectedFlight.originCode}
+      </span>
+    </div>
+
+    {/* Divider with plane */}
+    <div className="flex flex-col items-center gap-2">
+      <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">
+        {selectedFlight.duration}
+      </span>
+
+      <div className="w-full relative">
+        <div className="w-full h-[1px] bg-slate-800 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-950 p-2 rounded-full border border-white/10 shadow-lg">
+            <Plane className="w-4 h-4 text-primary-500 rotate-90" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Arrival */}
+    <div className="flex flex-col text-right">
+      <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">
+        Arrival
+      </span>
+      <span className="text-2xl font-black text-white leading-tight">
+        {selectedFlight.arrivalTime}
+      </span>
+      <span className="text-xs font-bold text-primary-400 uppercase tracking-[0.3em] mt-2">
+        {selectedFlight.destCode}
+      </span>
+    </div>
+
+  </div>
+
+</div>
+
                             </div>
 
                             {localSelectedClass ? (

@@ -35,7 +35,7 @@ const Footer = () => {
                     <ul className="space-y-4">
                         {['Home', 'Flights', 'About Us', 'Contact'].map((item) => (
                             <li key={item}>
-                                <Link to="#" className="text-slate-400 hover:text-primary-400 transition-colors">
+                                <Link to="/" className="text-slate-400 hover:text-primary-400 transition-colors">
                                     {item}
                                 </Link>
                             </li>
@@ -63,15 +63,15 @@ const Footer = () => {
                     <ul className="space-y-4">
                         <li className="flex items-center space-x-3 text-slate-400">
                             <MapPin size={18} className="text-primary-500" />
-                            <span>123 Aviation Way, Sky City</span>
+                            <span>Blok M Plaza: Jl. Kebayoran Baru.</span>
                         </li>
                         <li className="flex items-center space-x-3 text-slate-400">
                             <Phone size={18} className="text-primary-500" />
-                            <span>+1 (555) 000-SKY</span>
+                            <span>+62 89518765647</span>
                         </li>
                         <li className="flex items-center space-x-3 text-slate-400">
                             <Mail size={18} className="text-primary-500" />
-                            <span>support@skybooking.com</span>
+                            <span>skybooking@mail.com</span>
                         </li>
                     </ul>
                 </div>

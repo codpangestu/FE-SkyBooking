@@ -52,9 +52,9 @@ const Register = () => {
                         </div>
                         <div className="flex items-center justify-center gap-2 text-primary-400 font-black uppercase tracking-[0.4em] text-[10px] mb-4">
                             <Sparkles className="w-3.5 h-3.5" />
-                            Identity Establishment
+                            
                         </div>
-                        <h2 className="text-4xl font-black text-white tracking-tighter mb-4 leading-none">Global <br /><span className="text-gradient">Citizenship</span></h2>
+                        <h2 className="text-4xl font-black text-white tracking-tighter mb-4 leading-none">Sign Up <br /><span className="text-gradient">New Account</span></h2>
                         <p className="text-slate-500 font-bold text-sm uppercase tracking-widest leading-relaxed">Join the elite manifest for premium travel</p>
                     </div>
 
@@ -115,7 +115,7 @@ const Register = () => {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-4">Confirm Cipher</label>
+                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-4">Confirm Password</label>
                                 <div className="relative group/input">
                                     <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within/input:text-primary-500 transition-colors" size={20} />
                                     <input
@@ -139,7 +139,7 @@ const Register = () => {
                                 <Loader2 className="w-7 h-7 animate-spin" />
                             ) : (
                                 <>
-                                    <span>Forge Identity</span>
+                                    <span>Sign Up</span>
                                     <ArrowRight size={22} className="group-hover/btn:translate-x-1.5 transition-transform" />
                                 </>
                             )}
@@ -148,9 +148,9 @@ const Register = () => {
 
                     <div className="mt-14 pt-10 border-t border-white/5 text-center">
                         <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">
-                            Existing Identity?{' '}
+                            Already Have an Account?{' '}
                             <Link to="/login" className="text-primary-500 font-black hover:text-white transition-colors ml-2 underline decoration-primary-500/30 underline-offset-4">
-                                Authenticate
+                                Sign in
                             </Link>
                         </p>
                     </div>

@@ -1,31 +1,32 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, LogIn, ArrowRight, ShieldCheck, Github, Sparkles, Loader2 } from 'lucide-react';
-import authService from '../services/authService';
+import { Mail, Lock, LogIn, ArrowRight, ShieldCheck, Github, Sparkles, Loader2, AlertCircle, Globe } from 'lucide-react';
+import useAuthStore from '../store/useAuthStore';
 
 const Login = () => {
     const [email, setEmail] = useState('admin@skybooking.com');
     const [password, setPassword] = useState('password');
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const login = useAuthStore((state) => state.login);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setError(null);
 
-        try {
-            const data = await authService.login({ email, password });
-            const user = data.user || (data.data && data.data.user);
+        const result = await login({ email, password });
+
+        if (result.success) {
+            // Get user from store after successful login
+            const user = useAuthStore.getState().user;
             const role = user?.role || 'user';
-
             navigate(role === 'admin' ? '/admin' : '/');
-            window.location.reload();
-        } catch (err) {
-            console.error('Login failed:', err);
-            alert(err.response?.data?.message || 'Identity verification failed. Please re-authenticate.');
-        } finally {
-            setIsLoading(false);
+        } else {
+            setError(result.message);
         }
+        setIsLoading(false);
     };
 
     return (
@@ -44,21 +45,28 @@ const Login = () => {
                         </div>
                         <div className="flex items-center justify-center gap-2 text-primary-400 font-black uppercase tracking-[0.4em] text-[10px] mb-4">
                             <Sparkles className="w-3.5 h-3.5" />
-                            Vault Access
+                            
                         </div>
-                        <h2 className="text-4xl font-black text-white tracking-tighter mb-4 leading-none">Command <br /><span className="text-gradient">Entrance</span></h2>
+                        <h2 className="text-4xl font-black text-white tracking-tighter mb-4 leading-none">Sign In <br /><span className="text-gradient">Account</span></h2>
                         <p className="text-slate-500 font-bold text-sm uppercase tracking-widest leading-relaxed">Secure your session for premium flight management</p>
                     </div>
 
+                    {error && (
+                        <div className="mb-10 p-5 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-400 text-[10px] font-black uppercase tracking-widest flex items-center gap-4 animate-in fade-in slide-in-from-top-4">
+                            <AlertCircle size={20} className="shrink-0" />
+                            <span>{error}</span>
+                        </div>
+                    )}
+
                     <form onSubmit={handleLogin} className="space-y-8">
                         <div className="space-y-3">
-                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-4">Identity Email</label>
+                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-4">Email</label>
                             <div className="relative group/input">
                                 <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within/input:text-primary-500 transition-colors" size={20} />
                                 <input
                                     type="email"
                                     className="w-full h-18 bg-slate-950/50 border-2 border-white/5 rounded-[24px] pl-16 pr-6 outline-none focus:border-primary-500/50 focus:bg-slate-900 transition-all font-black text-white placeholder-slate-700 uppercase tracking-widest text-xs"
-                                    placeholder="Enter Authorized Email"
+                                    placeholder="input your mail"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -68,7 +76,7 @@ const Login = () => {
 
                         <div className="space-y-3">
                             <div className="flex justify-between items-center px-4">
-                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Security Cipher</label>
+                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Password</label>
                                 <a href="#" className="text-[9px] font-black text-primary-500 hover:text-white transition-colors uppercase tracking-widest">Forgot Keys?</a>
                             </div>
                             <div className="relative group/input">
@@ -93,7 +101,7 @@ const Login = () => {
                                 <Loader2 className="w-7 h-7 animate-spin" />
                             ) : (
                                 <>
-                                    <span>Initiate Sync</span>
+                                    <span>Login</span>
                                     <ArrowRight size={22} className="group-hover/btn:translate-x-1.5 transition-transform" />
                                 </>
                             )}
@@ -102,7 +110,7 @@ const Login = () => {
 
                     <div className="mt-14 pt-10 border-t border-white/5">
                         <div className="relative flex justify-center mb-10">
-                            <span className="bg-slate-950 px-6 text-[9px] font-black text-slate-600 relative z-10 uppercase tracking-[0.5em]">Terminal Overrides</span>
+                            <span className="bg-slate-950 px-6 text-[9px] font-black text-slate-600 relative z-10 uppercase tracking-[0.5em]">or sign in with</span>
                             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5"></div>
                         </div>
 
@@ -112,8 +120,8 @@ const Login = () => {
                                 GitHub
                             </button>
                             <button className="flex items-center justify-center gap-3 h-14 rounded-2xl bg-slate-900/50 border border-white/5 text-slate-400 font-black uppercase text-[10px] tracking-widest hover:bg-slate-900 hover:text-white transition-all">
-                                <ShieldCheck size={18} />
-                                SAML
+                                <Globe size={18} />
+                                Google
                             </button>
                         </div>
                     </div>
